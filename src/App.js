@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { useState } from 'react';
+import {ethers} from 'ethers';
+import './App.css';
+import Counter from './artifacts/contracts/Opensource.sol/Opensource.json';
+
+const counterAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+
+const provider = new ethers.providers.Web3Provider(window.ethereum); // with metamask
+const signer = provider.getSigner();
+const contract = new ethers.Contract(counterAddress,Counter.abi,signer);
 function App() {
+
+  const [fund,createRequest] = useState(0);
+  const [counter,setCounter] = useState(0);
+  
+ const applyfund = async () =>{
+  const result = await contract.createRequest(fund);
+  result.wait();
+  console.log(result);
+ }
   return (
+    
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       <h1 className='h1'>Opensource </h1>
       </header>
+      <body>
+       <button type='button' className='btn' onClick={applyfund} >Create</button>
+      </body>
+      <footer className='footer'>
+      <h3 className='fh3'>Made by Jay </h3>
+      </footer>
     </div>
   );
 }
