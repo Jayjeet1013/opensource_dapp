@@ -14,7 +14,7 @@ async function main() {
 
   await opensource.deployed();
 
-  console.log("Address is :", opensource.address);
+  console.log("Address is of smart contract:", opensource.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
