@@ -11,8 +11,8 @@ const signer = provider.getSigner();
 const contract = new ethers.Contract(counterAddress,Counter.abi,signer);
 function App() {
 
-  const [fund,createRequest] = useState(0);
-  const [counter,setCounter] = useState(0);
+  const [fund,createfund] = useState(0);
+  const [request,createRequest] = useState(0);
   
  const applyfund = async () =>{
   const result = await contract.createRequest(fund);
@@ -27,6 +27,7 @@ function App() {
       </header>
       <body>
        <button type='button' className='btn' onClick={applyfund} >Create</button>
+       
       </body>
       <footer className='footer'>
       <h3 className='fh3'>Made by Jay </h3>
