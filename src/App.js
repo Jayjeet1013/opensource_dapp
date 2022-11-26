@@ -15,9 +15,9 @@ function App() {
   const [request,createRequest] = useState(0);
   
  const applyfund = async () =>{
-  const result = await contract.createRequest(fund);
+  const result = await contract.createRequest();
   result.wait();
-  console.log(result);
+  console.log(request);
  }
   return (
     
